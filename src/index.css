@@ -9,6 +9,11 @@ body {
 .playfair-display {
   font-family: "Playfair Display", serif;
 }
+.menu li > *:not(ul, .menu-title, details, .btn).active {
+  background-color: transparent;
+  border: 1px solid #23be0a;
+  color: black;
+}
 .btn1,
 .btn2 {
   background-color: #23be0a;

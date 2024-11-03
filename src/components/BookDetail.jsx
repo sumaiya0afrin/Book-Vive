@@ -1,19 +1,22 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Button2 from "./Button2";
-import { addToStoredReadList } from "./AddToRead";
+import { addToStoredReadList, addToStoredWishList } from "./AddToRead";
 
 const BookDetail = () => {
   const { bookId } = useParams();
-  console.log(bookId);
+
   const data = useLoaderData();
   const id = parseInt(bookId);
 
   const book = data.find((book) => book.bookId === id);
-  console.log(book);
 
   const handleRead = (id) => {
     addToStoredReadList(id);
+  };
+
+  const handleWishList = (id) => {
+    addToStoredWishList(id);
   };
   return (
     <div className="hero min-h-screen mb-10">
@@ -37,7 +40,7 @@ const BookDetail = () => {
             <strong>Review:</strong> {book.review}
           </p>
 
-          <p>
+          <div>
             <strong>Tags: </strong>
             {book.tags.map((tag, index) => (
               <div
@@ -47,7 +50,7 @@ const BookDetail = () => {
                 <p> #{tag}</p>
               </div>
             ))}
-          </p>
+          </div>
           <div className="divider my-0"></div>
 
           <div className="overflow-x-auto">
@@ -79,7 +82,9 @@ const BookDetail = () => {
             >
               Read
             </button>
-            <Button2 text="Wishlist"></Button2>
+            <button onClick={() => handleWishList(bookId)} className="btn btn2">
+              Wishlist
+            </button>
           </div>
         </div>
       </div>
